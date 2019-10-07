@@ -20,16 +20,12 @@ def bubble_sort(arr):
         swapped = False
         for i in range(len(arr) - 1):
             if arr[i] > arr[i + 1]:
-                temp = arr[i]
-                arr[i] = arr[i + 1]
-                arr[i + 1] = temp
+                (arr[i], arr[i + 1]) = (arr[i + 1], arr[i])
                 swapped = True
         if swapped == False:
             sorted = True
     return arr
 
-
-print(bubble_sort([1, 5, 8, 4, 2, 9, 6, 0, 3, 7]))
 
 # STRETCH: implement the Count Sort function below
 
