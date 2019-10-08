@@ -1,3 +1,4 @@
+import math
 # TO-DO: complete the helpe function below to merge 2 sorted arrays
 def merge(arrA, arrB):
     elements = len(arrA) + len(arrB)
@@ -23,24 +24,25 @@ def merge(arrA, arrB):
             done = True
         i -= 1
     merged_arr[0] = arrA[0] if arrA[0] < arrB[0] else arrB[0]
-    
+
     return merged_arr
 
 
-print(merge([1, 5], [0, 8, 90, 92]))
-
 # TO-DO: implement the Merge Sort function below USING RECURSION
-
-
 def merge_sort(arr):
+    print(arr)
     # TO-DO
-    if len(arr) == 0:
-        return
-
-    if len(arr) == 1:
+    if len(arr) == 0 or len(arr) == 1:
         return arr
 
-    return arr + merge_sort()
+    if len(arr) == 2:
+        return merge([arr[0]], [arr[1]])
+
+    middle = int(len(arr) / 2)
+    return merge_sort(arr[middle:]) + merge_sort(arr[:middle])
+
+
+print(merge_sort([2, 8, 92, 1]))
 
 
 # STRETCH: implement an in-place merge sort algorithm
