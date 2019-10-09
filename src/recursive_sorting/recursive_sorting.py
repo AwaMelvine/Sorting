@@ -5,44 +5,44 @@ def merge(arrA, arrB):
     merged_arr = [0] * elements
     # TO-DO
 
-    i = elements - 1
-    x = len(arrA) - 1
-    y = len(arrB) - 1
-    done = False
+    i = 0
+    x = 0
+    y = 0
 
-    while not done:
-        if arrA[x] > arrB[y]:
+    while x < len(arrA) and y < len(arrB):
+        if arrA[x] < arrB[y]:
             merged_arr[i] = arrA[x]
-            if x >= 0:
-                x -= 1
+            x += 1
         else:
             merged_arr[i] = arrB[y]
-            if y >= 0:
-                y -= 1
+            y += 1
+        i += 1
 
-        if x < 0 or y < 0:
-            done = True
-        i -= 1
-    merged_arr[0] = arrA[0] if arrA[0] < arrB[0] else arrB[0]
+    while i <= elements - 1:
+        if len(arrA) > x:
+            merged_arr[i] = arrA[x]
+            x += 1
+        elif len(arrB) > y:
+            merged_arr[i] = arrB[y]
+            y += 1
+        i += 1
 
     return merged_arr
 
 
 # TO-DO: implement the Merge Sort function below USING RECURSION
 def merge_sort(arr):
-    print(arr)
     # TO-DO
-    if len(arr) == 0 or len(arr) == 1:
+    if len(arr) <= 1:
         return arr
 
-    if len(arr) == 2:
-        return merge([arr[0]], [arr[1]])
-
     middle = int(len(arr) / 2)
-    return merge_sort(arr[middle:]) + merge_sort(arr[:middle])
 
+    left = merge_sort(arr[middle:])
+    right = merge_sort(arr[:middle])
 
-print(merge_sort([2, 8, 92, 1]))
+    return merge(left, right)
+
 
 
 # STRETCH: implement an in-place merge sort algorithm
